@@ -244,18 +244,19 @@ public class BruteForce extends javax.swing.JFrame {
                             {
                                 pass = letters[i] + letters[j] + letters[k] + letters[l] + letters[m] + letters[n]; //running through all the characters
                                 try {
-                                    System.out.println(pass + " <-- Generated"); //print 
+                                    //System.out.println(pass + " <-- Generated"); //print 
                                     hash = SHA1(pass); //runs hashing function
-                                    System.out.println(hash); //prints hash result 
+                                    //System.out.println(hash); //prints hash result 
                                 } catch (NoSuchAlgorithmException e) { //catch check
                                     e.printStackTrace(); 
                                 } catch (UnsupportedEncodingException e) {  
                                     e.printStackTrace(); 
                                 } 
                                 String input = jTextField1.getText().trim();//gets input
-                                System.out.println(input + "\n"); //prints given input 
+                                //System.out.println(input + "\n"); //prints given input 
                                 if (hash.equals(input)) //if given hash matches the one that has been generated 
                                 {
+                                    System.out.println(pass);
                                     System.out.println("MATCHED!!!"); //result message 
                                     long stopTime = System.currentTimeMillis();//get current millisecond 
                                     long elapsedTime = stopTime - startTime;//do time calculation 
