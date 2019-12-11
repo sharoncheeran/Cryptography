@@ -148,16 +148,16 @@ public class Modul extends javax.swing.JFrame {
         jTextArea1.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    boolean checkBN(String g)
+    boolean checkBN(String g) //the check isbn digits function
     {
         for(int i = 0; i < 9; i++)
         {
-            if(!Character.isDigit(g.charAt(i)))
+            if(!Character.isDigit(g.charAt(i))) //checks to see whether the characters given are digis
             {
                 return false;
             }
         }
-        if (!(Character.isDigit(g.charAt(9)) || g.charAt(9) == 'X' || g.charAt(9) == 'x'))
+        if (!(Character.isDigit(g.charAt(9)) || g.charAt(9) == 'X' || g.charAt(9) == 'x')) //checks to see whether there is an X at the end
         {
             return false;
         }
@@ -166,43 +166,43 @@ public class Modul extends javax.swing.JFrame {
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String is = jTextField2.getText().replace("-","").trim();
-        if (is.length() !=10)
+        if (is.length() !=10) //check if length is 10 and return message else run code
         {
             JOptionPane.showMessageDialog(null, "Wrong");
         }
         else 
         {
-            if (!checkBN(is))
+            if (!checkBN(is)) //checks whether it has X at end
             {
                 JOptionPane.showMessageDialog(null, "Must end with X or Number");
             }
             else 
             {
                 int ex = 0;
-                int[] bn = new int [16];
+                int[] bn = new int [16];//create array of 16
                 
                 for (int i = 0;i < 9; i++)
                 {
-                    bn[i] = Integer.parseInt(String.valueOf(is.charAt(i)));
+                    bn[i] = Integer.parseInt(String.valueOf(is.charAt(i))); //convert from string to integer
                 }
                 if (is.charAt(9) == 'X')
                     {
-                        bn[9] = 10;
+                        bn[9] = 10; //replace X with 10 in position 9
                     }
                     else 
                     {
-                        bn[9] = Integer.parseInt(String.valueOf(is.charAt(9)));
+                        bn[9] = Integer.parseInt(String.valueOf(is.charAt(9)));//else convert to integer
                     }
                 for (int j = 0; j < bn.length; j++)
                 {
-                   ex += (bn[j] * (j + 1)); 
+                   ex += (bn[j] * (j + 1)); //witihin loop do maths
                 }
                 //System.out.println(ex);
-                ex = ex % 11;
-                System.out.println(ex + "----");
+                ex = ex % 11; //mod by 11
+                System.out.println(ex + "----"); //print resut 
                 if (ex == 0)
                 {
-                    jTextArea1.setText("Correct ISBN Number");
+                    jTextArea1.setText("Correct ISBN Number"); //reulst
                 }
                 else
                 {
@@ -224,32 +224,31 @@ public class Modul extends javax.swing.JFrame {
        }
        else 
        {
-        String s = jTextField1.getText().trim();
+        String s = jTextField1.getText().trim();//triming input
      
-       // int CC = Integer.parseInt(s);
+      //int CC = Integer.parseInt(s);
         int[] d = new int[16];
         int num = 0;
         for (int i = 0; i < 16; i++)
         {
-            d[i] = Integer.parseInt(String.valueOf(s.charAt(i))); //passiing to integer
-            //JOptionPane.showMessageDialog(null, s.charAt(i));
-            //JOptionPane.showMessageDialog(null, CC[i]));
+            d[i] = Integer.parseInt(String.valueOf(s.charAt(i))); //passiing to integer 
+            
             for (int j = d.length - 2; j >= 0; j = j - 2)
             {
-                int temp = d[j];
-                temp = temp * 2;
+                int temp = d[j]; //doing calculation
+                temp = temp * 2; 
                 if (temp > 9)
                 {
                     temp = temp - 9;
                 }
-                d[j] = temp; 
+                d[j] = temp; //storing to array
             }
             for (int k = 0; k < d.length; k++)
             {
-                num += d[k];
+                num += d[k]; //storing to array
             }
         }
-        if (num % 10 == 0)
+        if (num % 10 == 0) //result 
         {
             jTextArea1.setText("Correct CC Number");
         }

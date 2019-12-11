@@ -68,7 +68,7 @@ public class BruteForce extends javax.swing.JFrame {
         return Arrays.toString(nm).replaceAll("\\[|\\]|,|\\s", ""); //converting int array to string with regex to replace commas and brackets
     }
     
-    private static String convertToHex(byte[] data) { //coverting to hex
+    private static String convertToHex(byte[] data) { //coverting to hex - code from leturer
         StringBuffer buf = new StringBuffer(); 
         for (int i = 0; i < data.length; i++) { 
         	int halfbyte = (data[i] >>> 4) & 0x0F; 
@@ -84,7 +84,7 @@ public class BruteForce extends javax.swing.JFrame {
         return buf.toString(); 
     } 
     
-    public static String SHA1(String text)  //hashing 
+    public static String SHA1(String text)  //hashing - code from lecturer 
         throws NoSuchAlgorithmException, UnsupportedEncodingException  { 
 	MessageDigest md; 
 	md = MessageDigest.getInstance("SHA-1"); 
