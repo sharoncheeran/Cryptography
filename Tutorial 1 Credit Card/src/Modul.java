@@ -42,8 +42,6 @@ public class Modul extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextField2.setText("0-9752298-0-X ");
-
         jLabel1.setText("Credit Card");
 
         jLabel2.setText("ISBN");
@@ -218,20 +216,20 @@ public class Modul extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       if (jTextField1.getText().trim().length() != 16) //credit card check
+       String s = jTextField1.getText().trim();
+       if (s.length() != 16) //credit card check
        {
            JOptionPane.showMessageDialog(null, "Wrong"); //lenght check
        }
        else 
        {
-        String s = jTextField1.getText().trim();//triming input
-     
-      //int CC = Integer.parseInt(s);
-        int[] d = new int[16];
-        int num = 0;
-        for (int i = 0; i < 16; i++)
-        {
-            d[i] = Integer.parseInt(String.valueOf(s.charAt(i))); //passiing to integer 
+            int[] d = new int[16];
+            int num = 0;
+            
+            for (int i = 0; i < d.length; i++)
+            {
+                d[i] = Integer.parseInt(String.valueOf(s.charAt(i))); //passiing to integer 
+            }
             
             for (int j = d.length - 2; j >= 0; j = j - 2)
             {
@@ -243,23 +241,25 @@ public class Modul extends javax.swing.JFrame {
                 }
                 d[j] = temp; //storing to array
             }
-            for (int k = 0; k < d.length; k++)
+
+            for (int k = 0; k < 16; k++)
             {
                 num += d[k]; //storing to array
             }
+
+            if (num % 10 == 0) //result 
+            {
+                jTextArea1.setText("Correct CC Number");
+            }
+            else 
+            {
+                jTextArea1.setText("Incorrect CC Number");
+            }
         }
-        if (num % 10 == 0) //result 
-        {
-            jTextArea1.setText("Correct CC Number");
-        }
-        else 
-        {
-            jTextArea1.setText( "Incorrect CC Number");
-        }
-       }
-       //4427164672684819
+       //4427164672684819 -- Correct credit card numbers
        //4597621397196860
        //4012490266443077
+       //4632820849124143
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
