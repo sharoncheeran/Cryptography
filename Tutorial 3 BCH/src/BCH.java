@@ -311,7 +311,6 @@ public class BCH extends javax.swing.JFrame {
             }
         });
 
-        jTextField2.setText("3742102896");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);

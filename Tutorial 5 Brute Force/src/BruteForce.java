@@ -12,6 +12,20 @@ import java.security.NoSuchAlgorithmException;
  * @author sharo
  */
 public class BruteForce extends javax.swing.JFrame {
+    int Mod11(int x) //Modulous function
+    {
+        int y;
+        if (x < 0){
+            y = -x; //converting to positive - and - equals +
+            x = y % 11; //do mod
+            x = -x + 11; //converting the positive to negative number then adding 11
+        }
+        else
+        {
+            x = x % 11; //do this if integer already positive
+        }
+        return x;
+    }
 
     String BCHGenerator(String s)//BCH generation, getting 6 and adding 4 digits using parity bit
     {
@@ -24,14 +38,18 @@ public class BruteForce extends javax.swing.JFrame {
             nm[i] = Integer.parseInt(String.valueOf(num.charAt(i))); //converting to integer
             
         }
-        d7 = ((nm[0] * 4) + (10 * nm[1]) + (9 * nm[2]) + (2 * nm[3]) + nm[4] + (7 * nm[5])) % 11; //d7 parity calculation
-        d8 = ((7 * nm[0]) + (8 * nm[1]) + (7 * nm[2]) + nm[3] + (9 * nm[4]) + (6 * nm[5])) % 11; //d8 parity calculation 
-        d9 = ((9 * nm[0]) + nm[1] + (7 * nm[2]) + (8 * nm[3]) + (7 * nm[4]) + (7 * nm[5])) % 11; //d9 parity calculation 
-        d10 = (nm[0] + (2 * nm[1]) + (9 * nm[2]) + (10 * nm[3]) + (4 * nm[4]) + nm[5]) % 11; //d10 parity calculation 
+        d7 = ((nm[0] * 4) + (10 * nm[1]) + (9 * nm[2]) + (2 * nm[3]) + nm[4] + (7 * nm[5]));
+        d7 = Mod11(d7);//d7 parity calculation
+        d8 = ((7 * nm[0]) + (8 * nm[1]) + (7 * nm[2]) + nm[3] + (9 * nm[4]) + (6 * nm[5])); //d8 parity calculation 
+        d8 = Mod11(d8);
+        d9 = ((9 * nm[0]) + nm[1] + (7 * nm[2]) + (8 * nm[3]) + (7 * nm[4]) + (7 * nm[5])); //d9 parity calculation 
+        d9 = Mod11(d9);
+        d10 = (nm[0] + (2 * nm[1]) + (9 * nm[2]) + (10 * nm[3]) + (4 * nm[4]) + nm[5]); //d10 parity calculation 
+        d10 = Mod11(d10);
         
         if (d7 > 9)//if condition met return error else store into array
         {
-            System.out.println("Unusable number d7"); //error message
+            //System.out.println("Unusable number d7"); //error message
             return "";
         }
         else
@@ -40,7 +58,7 @@ public class BruteForce extends javax.swing.JFrame {
         }
         if (d8 > 9)//if condition met return error else store into array
         { 
-            System.out.println("Unusable number d8");//error message
+            //System.out.println("Unusable number d8");//error message
             return "";
         }
         else
@@ -49,7 +67,7 @@ public class BruteForce extends javax.swing.JFrame {
         }
         if (d9 > 9)//if condition met return error else store into array
         {
-            System.out.println("Unusable number d9");//error message
+            //System.out.println("Unusable number d9");//error message
             return "";
         }
         else
@@ -58,7 +76,7 @@ public class BruteForce extends javax.swing.JFrame {
         }
         if (d10 > 9)//if condition met return error else store into array
         {
-            System.out.println("Unusable number d10");//error message
+            //System.out.println("Unusable number d10");//error message
             return "";
         }
         else
@@ -282,7 +300,7 @@ public class BruteForce extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         
         String[] numbers = {"0","1","2","3","4","5","6","7","8","9"};//SET B 
-        String pass, hash = null, p;
+        String pass, hash = null, p = null;
         long startTime = System.currentTimeMillis(); //timer function
         long total = 0;
         
@@ -304,11 +322,11 @@ public class BruteForce extends javax.swing.JFrame {
                             {
                                 pass = numbers[i] + numbers[j] + numbers[k] + numbers[l] + numbers[m] + numbers[n]; //running through all the characters
                                 try {
-                                    System.out.println(pass + " <-- First 6"); //print
+                                    //System.out.println(pass + " <-- First 6"); //print
                                     p = BCHGenerator(pass); //passing through BCH Generator with 6 digits generated 
-                                    System.out.println(p + " <-- Full set"); //print
+                                    //System.out.println(p + " <-- Full set"); //print
                                     hash = SHA1(p); //runs hashing function
-                                    System.out.println(hash); //prints hash 
+                                    //System.out.println(hash); //prints hash 
                                 } catch (NoSuchAlgorithmException e) { //catch check 
                                     e.printStackTrace(); 
                                 } catch (UnsupportedEncodingException e) {  
@@ -316,10 +334,11 @@ public class BruteForce extends javax.swing.JFrame {
                                 } 
                                 
                                 String input = jTextField1.getText().trim();//gets input
-                                System.out.println(input + "\n"); //prints given input 
+                                //System.out.println(input + "\n"); //prints given input 
                                 
                                 if (hash.equals(input)) //if hash generated matches given hash 
                                 {
+                                    System.out.println(p + " <-- Full set");
                                     System.out.println("MATCHED!!!");//result message 
                                     long stopTime = System.currentTimeMillis(); //get current time
                                     long elapsedTime = stopTime - startTime;//time calculation 
